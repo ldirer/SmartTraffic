@@ -5,6 +5,13 @@ package Model;
  */
 public class Voiture {
 
+    private int idVehicule;
+
+
+
+    public Voiture(int idVehicule) {
+    this.idVehicule=idVehicule;
+    }
 
     public int getIdVehicule() {
         return idVehicule;
@@ -13,8 +20,6 @@ public class Voiture {
     public void setIdVehicule(int idVehicule) {
         this.idVehicule = idVehicule;
     }
-
-    private int idVehicule;
 
 
 

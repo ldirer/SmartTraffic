@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class TrafficActuel {
 
+    private int idVoiture=0;
     private List<Voiture> fileHorizontale = new ArrayList<>();
     private List<Voiture> fileVerticale = new ArrayList<>();
     private double tempSystem=System.currentTimeMillis();
@@ -23,13 +24,15 @@ public class TrafficActuel {
     }
 
 
-    public void ajouterHorizontale(Voiture voiture){
-
-        double tmp= System.currentTimeMillis()-tempSystem;
+    public void ajouterHorizontale(){
+        Voiture voiture = new Voiture(idVoiture);
+        idVoiture++;
         fileHorizontale.add(voiture);
     }
-    public void ajouterVerticale(Voiture voiture){
-
+    public void ajouterVerticale(){
+        Voiture voiture = new Voiture(idVoiture);
+        idVoiture++;
+        fileVerticale.add(voiture);
     }
 
 }
