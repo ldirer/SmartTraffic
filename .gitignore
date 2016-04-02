@@ -26,3 +26,5 @@ Thumbs.db
 *.eps
 *~
 *.dot
+.idea/
+*/.idea

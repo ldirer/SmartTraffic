@@ -74,6 +74,11 @@ public class TrafficLights implements SimulationTimeStep {
             if (trafficLightsInput.isLogging()) {
                 setUpLogging(trafficLightsInput.getNTimestep());
             }
+//            // TODO HACK: Haaaaack to enforce logging without using xml.
+//            else {
+//                // setUpLogging(trafficLightsInput.getNTimestep());
+//                setUpLogging(5);
+//            }
         }
     }
 

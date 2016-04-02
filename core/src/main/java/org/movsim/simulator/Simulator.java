@@ -36,6 +36,7 @@ import org.movsim.input.network.OpenDriveReader;
 import org.movsim.output.FileTrafficSinkData;
 import org.movsim.output.FileTrafficSourceData;
 import org.movsim.output.SimulationOutput;
+import org.movsim.output.route.TravelTimeOnRoute;
 import org.movsim.scenario.boundary.autogen.BoundaryConditionsType;
 import org.movsim.scenario.vehicle.autogen.MovsimExternalVehicleControl;
 import org.movsim.shutdown.ShutdownHooks;
@@ -74,6 +75,7 @@ public class Simulator implements SimulationTimeStep, SimulationRun.CompletionCa
 
     /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory.getLogger(Simulator.class);
+    private static final double MAX_DURATION = 600;
 
     private long startTimeMillis;
 
@@ -159,7 +161,7 @@ public class Simulator implements SimulationTimeStep, SimulationRun.CompletionCa
         // TODO better handling of case "duration = INFINITY"
         double duration = simulationInput.isSetDuration() ? simulationInput.getDuration() : -1;
 
-        simulationRunnable.setDuration(duration < 0 ? Double.MAX_VALUE : duration);
+        simulationRunnable.setDuration(duration < 0 ? Simulator.MAX_DURATION : duration);
 
         if (simulationInput.isWithSeed()) {
             MyRandom.initializeWithSeed(simulationInput.getSeed());
@@ -407,6 +409,10 @@ public class Simulator implements SimulationTimeStep, SimulationRun.CompletionCa
         if (trafficSinkType.isLogging()) {
             roadSegment.sink().setRecorder(new FileTrafficSinkData(roadSegment.userId()));
         }
+        else {
+            // HACK: enforcing logging
+            roadSegment.sink().setRecorder(new FileTrafficSinkData(roadSegment.userId()));
+        }
     }
 
     public void reset() {
@@ -429,6 +435,24 @@ public class Simulator implements SimulationTimeStep, SimulationRun.CompletionCa
         // simOutput.timeStep(simulationRunnable.timeStep(), simulationRunnable.simulationTime(),
         // simulationRunnable.iterationCount());
         simulationRunnable.runToCompletion();
+    }
+
+
+    /**
+     *
+     * @return Total travel time of all vehicles in the network.
+     * I chose to compute the sum of total travel times over all the routes. This is what shows up in the logs.
+     * It is NOT consistent with the output of `roadNetwork.totalVehicleTravelTime()` (for some reason).
+     */
+    public double runToCompletionWithCost() {
+        runToCompletion();
+        // TODO: iterate over HashMap
+        double totalTime = 0;
+        for(TravelTimeOnRoute travelTimeOnRoute: simOutput.travelTimeOnRoutes.values()){
+            totalTime += travelTimeOnRoute.getTotalTravelTime();
+        }
+        return totalTime;
+//        return roadNetwork.totalVehicleTravelTime();
     }
 
     /**

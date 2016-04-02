@@ -37,6 +37,7 @@ class TrafficLightControllerInternal extends TrafficLightController {
         // first check if all "clear" conditions are fullfilled.
         // then check fixed-time schedule for next phase
         // and last check trigger condition for overriding fixed-time scheduler
+        // TODO HACK this is interesting!
         if (isClearConditionsFullfilled(phase)
                 && (currentPhaseDuration > phase.getDuration() || isTriggerConditionFullfilled(phase))) {
             nextPhase();

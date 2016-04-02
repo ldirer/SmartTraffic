@@ -73,7 +73,7 @@ public class SimulationOutput implements SimulationTimeStep {
 
     private final Map<Route, ConsumptionOnRoute> consumptionOnRoutes = new HashMap<>();
 
-    private final Map<Route, TravelTimeOnRoute> travelTimeOnRoutes = new HashMap<>();
+    public final Map<Route, TravelTimeOnRoute> travelTimeOnRoutes = new HashMap<>();
 
     private final Map<Route, IndividualTravelTimesOnRoute> individualTravelTimeOnRoutes = new HashMap<>();
 

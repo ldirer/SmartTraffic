@@ -157,6 +157,7 @@ public class TrafficLight extends RoadObjectController {
      * sets the {@link TrafficLightStatus}.
      * 
      * <p>
+     *     TODO HACK: Meaning of this warning?
      * The user has to assure that a single traffic light is not simultaneously controlled by the {@link TrafficLightController} and one (or
      * more) {@link Regulator}(s).
      * </p>

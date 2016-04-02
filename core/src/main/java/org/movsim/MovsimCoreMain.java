@@ -25,6 +25,7 @@
  */
 package org.movsim;
 
+import java.sql.DriverManager;
 import java.util.Locale;
 
 import javax.xml.bind.JAXBException;
@@ -72,6 +73,8 @@ public class MovsimCoreMain {
         // unmarshall movsim configuration file
         Movsim movsimInput = InputLoader.unmarshallMovsim(projectMetaData.getInputFile());
         if (projectMetaData.isScanMode()) {
+            // TODO HACK: The scanning mode is used to run several sims with different uncertainty values on the input data.
+            // We could do something similar to run several sims with different traffic light schedules.
             System.out.println("scanning mode");
             SimulationScan.invokeSimulationScan(movsimInput);
         } else {
@@ -82,7 +85,9 @@ public class MovsimCoreMain {
     public static Simulator invokeSingleSimulation(Movsim inputData) throws JAXBException, SAXException {
         Simulator simulator = new Simulator(inputData);
         simulator.initialize();
-        simulator.runToCompletion();
+        // simulator.runToCompletion();
+        double cost = simulator.runToCompletionWithCost();
+        System.out.println(String.format("HACK: cost is %s", cost));
         return simulator;
     }
 

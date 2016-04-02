@@ -48,6 +48,7 @@ public abstract class TrafficLightController implements SimulationTimeStep, Trig
         if (trafficLights.isEmpty()) {
             firstSignalId = trafficLight.getController().getControl().get(0).getSignalId();
         }
+        //HACK: setTriggerCallback is for mouse interaction (irrelevant)
         trafficLight.setTriggerCallback(this);
         trafficLights.put(trafficLight.signalType(), trafficLight);
 
@@ -104,6 +105,7 @@ public abstract class TrafficLightController implements SimulationTimeStep, Trig
 
     @Override
     public void nextPhase() {
+        // HACK: changes light status?
         LOG.debug("triggered next phase for controller group.");
         setNextPhaseIndex();
     }
@@ -116,6 +118,7 @@ public abstract class TrafficLightController implements SimulationTimeStep, Trig
     @Override
     public void timeStep(double dt, double simulationTime, long iterationCount) {
         if (recordDataCallback != null) {
+            // TODO HACK: mb we need to plug here to compute our statistics: nope, that's just for traffic lights!
             recordDataCallback.recordData(simulationTime, iterationCount, trafficLights.values());
         }
     }

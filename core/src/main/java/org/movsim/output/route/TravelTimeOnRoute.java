@@ -62,6 +62,15 @@ public class TravelTimeOnRoute extends OutputOnRouteBase {
         }
     }
 
+    public double getTotalTravelTime() {
+        // TODO HACK: Not sure what the difference between types are. Logs show same result. Whatever.
+        TravelTime tt = travelTimes.get(TravelTimeType.values()[0]);
+//        for (TravelTimeType type : TravelTimeType.values()) {
+//            tt = travelTimes.get(type);
+//        }
+        return tt.totalTravelTime;
+    }
+
     @Override
     public void timeStep(double dt, double simulationTime, long iterationCount) {
         int numberOfVehicles = Math.max(0, RoadNetworkUtils.vehicleCount(route) - roadNetwork.obstacleCount(route));
@@ -81,6 +90,7 @@ public class TravelTimeOnRoute extends OutputOnRouteBase {
 
     public static final class TravelTime {
         private double instantaneousTravelTime;
+        // TODO HACK: Total travel time is what we want.
         private double totalTravelTime;
         private double meanSpeed;
         private double instTravelTimeEMA;

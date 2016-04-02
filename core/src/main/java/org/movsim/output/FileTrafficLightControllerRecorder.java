@@ -71,6 +71,7 @@ public class FileTrafficLightControllerRecorder extends FileOutputBase implement
             return;
         }
         String formattedTime = ProjectMetaData.getInstance().getFormatedTimeWithOffset(simulationTime);
+        // TODO HACK: Actually this is just the state of the trafficLights, not what we're interested in logging.
         writeData(simulationTime, formattedTime, trafficLights);
     }
 

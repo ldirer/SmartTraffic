@@ -62,6 +62,7 @@ public class OpenDriveHandler {
      * @return true if the road network file exists and was successfully parsed, false otherwise.
      */
     public static boolean loadRoadNetwork(RoadNetwork roadNetwork, File file) {
+        //TODO HACK Mb we need to plug here if we want to avoid reading a proper file.
         OpenDRIVE openDriveNetwork = InputLoader.unmarshallOpenDriveNetwork(file);
         OpenDriveHandler openDriveHandlerJaxb = new OpenDriveHandler();
         return openDriveHandlerJaxb.create(openDriveNetwork, roadNetwork);
