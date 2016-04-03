@@ -1,20 +1,23 @@
 package org.movsim;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Timothy Nibeaudeau on 03/04/2016 for Movsim.
  */
 public class ResultCore {
     private String path;
-    private int[] individus;
+    private List<Integer> genes;
     private double result;
+
+    public ResultCore() {
+        genes = new ArrayList<>();
+    }
 
     public ResultCore(String path) {
         this.path = path;
-    }
-
-    public ResultCore(int[] individus, double result) {
-        this.individus = individus;
-        this.result = result;
+        genes = new ArrayList<>();
     }
 
     public double getResult() {
@@ -25,12 +28,12 @@ public class ResultCore {
         this.result = result;
     }
 
-    public int[] getIndividus() {
-        return individus;
+    public List<Integer> getGenes() {
+        return genes;
     }
 
-    public void setIndividus(int[] individus) {
-        this.individus = individus;
+    public void setGenes(List<Integer> genes) {
+        this.genes = genes;
     }
 
     public String getPath() {

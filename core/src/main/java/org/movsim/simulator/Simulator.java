@@ -467,16 +467,16 @@ public class Simulator implements SimulationTimeStep, SimulationRun.CompletionCa
 
     @Override
     public void simulationComplete(double simulationTime) {
-        LOG.info(String.format("Simulator.run: stop after time = %.2fs = %.2fh of simulation project=%s",
-                simulationTime, simulationTime / 3600., projectName));
+        /*LOG.info(String.format("Simulator.run: stop after time = %.2fs = %.2fh of simulation project=%s",
+                simulationTime, simulationTime / 3600., projectName));*/
 
         regulators.simulationCompleted(simulationTime);
 
-        LOG.info("total traveltime={} seconds", (int) roadNetwork.totalVehicleTravelTime());
-        LOG.info("total distance traveled={} meters", (int) roadNetwork.totalVehicleTravelDistance());
+        //LOG.info("total traveltime={} seconds", (int) roadNetwork.totalVehicleTravelTime());
+        //LOG.info("total distance traveled={} meters", (int) roadNetwork.totalVehicleTravelDistance());
 
         long elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis;
-        if (LOG.isInfoEnabled()) {
+        if (!LOG.isInfoEnabled()) {
             LOG.info(String.format(
                     "time elapsed=%d milliseconds --> simulation time warp = %.2f, time per 1000 update steps=%.3fs",
                     elapsedTimeMillis, simulationTime / TimeUnit.MILLISECONDS.toSeconds(elapsedTimeMillis),

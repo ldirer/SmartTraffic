@@ -33,9 +33,9 @@ public class FileTravelTimeOnRoute extends FileOutputBase {
         if (simulationTime - lastUpdateTime + MovsimConstants.SMALL_VALUE >= dtOutput || simulationTime == 0) {
             lastUpdateTime = simulationTime;
             //TODO HACK: commenting out for higher speeeeed
-            write(outputFormat, simulationTime, tt.getInstantaneousTravelTime(), tt.getInstantaneousTravelTimeEMA(),
+            /*write(outputFormat, simulationTime, tt.getInstantaneousTravelTime(), tt.getInstantaneousTravelTimeEMA(),
                     tt.getMeanSpeed() * Units.MS_TO_KMH, tt.getTotalTravelTime() * Units.S_TO_H,
-                    tt.getNumberOfVehicles());
+                    tt.getNumberOfVehicles());*/
         }
     }
 
