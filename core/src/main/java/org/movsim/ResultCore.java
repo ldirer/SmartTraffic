@@ -55,7 +55,9 @@ public class ResultCore implements Comparable<ResultCore> {
 
     public void updateScore() {
         if (path == null) {
-            path = "D:\\workspaces\\SmartTraffic\\sim\\generated\\" + 0 + ".xprj";
+            //TODO HACK what is the path relative to here??
+            path = "sim/generated/" + 0 + ".xprj";
+            //path = "D:\\workspaces\\SmartTraffic\\sim\\generated\\" + 0 + ".xprj";
         }
         try {
             Executor.run(this);

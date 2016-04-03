@@ -34,8 +34,9 @@ public abstract class Executor {
         simulator.initialize();
 
         double cost = simulator.runToCompletionWithCost();
-        System.out.println(String.format("HACK: cost is %s", cost));
-        core.setResult(cost);
+        System.out.println(String.format("CISCO - cost is %s", cost));
+        System.out.println(String.format("CISCO - fitness is %s", -cost));
+        core.setResult(-cost);
         return core;
     }
 }

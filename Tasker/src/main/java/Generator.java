@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,52 +20,46 @@ public class Generator {
     public static void main(String[] argv) {
 
         List<ResultCore> resultats = new ArrayList<>();
-        Solution solution;
-
-
+        int nIndividuals = 30;
+        Solution solution = new Solution(resultats, nIndividuals);
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 30; i++) {
-            try {
-                ResultCore core = new ResultCore("D:\\workspaces\\SmartTraffic\\sim\\generated\\" + 0 + ".xprj");
-                resultats.add(core);
-                //int[] individus = new int[12];
-                List<Integer> individus = new ArrayList<>();
 
-                for (int j = 0; j < 12; j++) {
-                    individus.add((int) (Math.random() * 90));
+        for (int generation = 0; generation < 10; generation++) {
+
+            for (int i = 0; i < nIndividuals; i++) {
+                ResultCore core = resultats.get(i);
+                try {
+                    createFile(core);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                core.setGenes(individus);
-
-                //Create File
-                createFile(core);
 
                 try {
                     //Run ! core is modified inplace.
                     Executor.run(core);
-                } catch (JAXBException e) {
-                    e.printStackTrace();
-                } catch (SAXException e) {
+                } catch (JAXBException | SAXException e) {
                     e.printStackTrace();
                 }
 
-                try {
-                    Executor.run(core);
-                } catch (JAXBException e) {
-                    e.printStackTrace();
-                } catch (SAXException e) {
-                    e.printStackTrace();
-                }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                // TODO HACK: See w/ Thimothy: we were running things twice??
+//                try {
+//                    Executor.run(core);
+//                } catch (JAXBException e) {
+//                    e.printStackTrace();
+//                } catch (SAXException e) {
+//                    e.printStackTrace();
+//                }
             }
+            ResultCore bestCandidate = Collections.max(resultats);
+            System.out.println(String.format("CISCO - Best score in generation %d: %f",
+                    generation, bestCandidate.getResult()));
+//                System.out.println("CISCO - HELLO HELLO generation");
+            System.out.println(String.format("CISCO - Best candidate in generation %d: %s",
+                    generation, bestCandidate.getGenes().toString()));
+            resultats = solution.evolveToNextGeneration();
+
         }
-
-        solution = new Solution(resultats);
-
-        System.out.println("END " + (System.currentTimeMillis() - startTime));
+        System.out.println("CISCO - END " + (System.currentTimeMillis() - startTime));
     }
 
     private static void createFile(ResultCore core) throws IOException {
