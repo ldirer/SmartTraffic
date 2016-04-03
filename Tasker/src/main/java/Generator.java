@@ -34,7 +34,7 @@ public class Generator {
                 createFile(core);
 
                 try {
-                    //Run !
+                    //Run ! core is modified inplace.
                     Executor.run(core);
                 } catch (JAXBException e) {
                     e.printStackTrace();
