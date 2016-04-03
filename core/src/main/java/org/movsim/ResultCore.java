@@ -1,5 +1,8 @@
 package org.movsim;
 
+import org.xml.sax.SAXException;
+
+import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +50,19 @@ public class ResultCore implements Comparable<ResultCore> {
     @Override
     public int compareTo(ResultCore o) {
         return (int) Math.signum(this.getResult() - o.getResult());
+    }
+
+
+    public void updateScore() {
+        if (path == null) {
+            path = "D:\\workspaces\\SmartTraffic\\sim\\generated\\" + 0 + ".xprj";
+        }
+        try {
+            Executor.run(this);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
     }
 }

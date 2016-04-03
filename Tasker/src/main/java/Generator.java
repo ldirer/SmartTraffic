@@ -1,5 +1,6 @@
 import org.movsim.Executor;
 import org.movsim.ResultCore;
+import org.movsim.Solution;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
@@ -18,6 +19,9 @@ public class Generator {
     public static void main(String[] argv) {
 
         List<ResultCore> resultats = new ArrayList<>();
+        Solution solution;
+
+
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 30; i++) {
             try {
@@ -57,6 +61,8 @@ public class Generator {
                 e.printStackTrace();
             }
         }
+
+        solution = new Solution(resultats);
 
         System.out.println("END " + (System.currentTimeMillis() - startTime));
     }
