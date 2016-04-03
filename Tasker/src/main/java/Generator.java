@@ -23,10 +23,11 @@ public class Generator {
             try {
                 ResultCore core = new ResultCore("D:\\workspaces\\SmartTraffic\\sim\\generated\\" + 0 + ".xprj");
                 resultats.add(core);
-                int[] individus = new int[12];
+                //int[] individus = new int[12];
+                List<Integer> individus = new ArrayList<>();
 
-                for (int j = 0; j < individus.length; j++) {
-                    individus[j] = (int) (Math.random() * 90);
+                for (int j = 0; j < 12; j++) {
+                    individus.add((int) (Math.random() * 90));
                 }
                 core.setGenes(individus);
 
@@ -127,49 +128,49 @@ public class Generator {
                 "        </Simulation>\n" +
                 "        <TrafficLights>\n" +
                 "            <ControllerGroup id=\"plan1\">\n" +
-                "                <Phase duration=\"" + core.getGenes()[0] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(0) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Green\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[1] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(1) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"GreenRed\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[2] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(2) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Red\" />\n" +
                 "                </Phase>\n" +
                 "            </ControllerGroup>\n" +
                 "\n" +
                 "            <ControllerGroup id=\"plan2\">\n" +
-                "                <Phase duration=\"" + core.getGenes()[3] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(3) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Green\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[4] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(4) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"GreenRed\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[5] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(5) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Red\" />\n" +
                 "                </Phase>\n" +
                 "            </ControllerGroup>\n" +
                 "\n" +
                 "            <ControllerGroup id=\"plan3\">\n" +
-                "                <Phase duration=\"" + core.getGenes()[6] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(6) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Red\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[7] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(7) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"RedGreen\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[8] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(8) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Green\" />\n" +
                 "                </Phase>\n" +
                 "            </ControllerGroup>\n" +
                 "\n" +
                 "            <ControllerGroup id=\"plan4\">\n" +
-                "                <Phase duration=\"" + core.getGenes()[9] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(9) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Red\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[10] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(10) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"RedGreen\" />\n" +
                 "                </Phase>\n" +
-                "                <Phase duration=\"" + core.getGenes()[11] + "\">\n" +
+                "                <Phase duration=\"" + core.getGenes().get(11) + "\">\n" +
                 "                    <TrafficLightState type=\"firstLight\" status=\"Green\" />\n" +
                 "                </Phase>\n" +
                 "            </ControllerGroup>\n" +

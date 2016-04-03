@@ -206,8 +206,8 @@ public class Solution {
         for (int indice = 0; indice < populationEnfant.size(); indice++)
             populationTemporaire.add(populationEnfant.get(indice));
 
-        //Collections.sort(populationTemporaire);
-        Collections.sort(populationTemporaire, (a, b) -> (int) Math.signum(a.getResult() - b.getResult()));
+        Collections.sort(populationTemporaire);
+        //Collections.sort(populationTemporaire, (a, b) -> (int) Math.signum(a.getResult() - b.getResult()));
         listeIndividus.clear();
         int nbIndividus = 0;
         for (int i = 0; i < pourcentageSelection * listeIndividus.size() / 100; i++) {

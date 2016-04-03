@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Timothy Nibeaudeau on 03/04/2016 for Movsim.
  */
-public class ResultCore {
+public class ResultCore implements Comparable<ResultCore> {
     private String path;
     private List<Integer> genes;
     private double result;
@@ -42,5 +42,10 @@ public class ResultCore {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Override
+    public int compareTo(ResultCore o) {
+        return (int) Math.signum(this.getResult() - o.getResult());
     }
 }
